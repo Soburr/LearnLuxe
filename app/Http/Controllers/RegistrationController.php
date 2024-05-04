@@ -34,7 +34,7 @@ class RegistrationController extends Controller
             $randomNumbers = mt_rand(1000, 9999);
         } while (DB::table('students')->where('student_id', $firstname.$randomNumbers)->exists());
 
-        $student_id = $$firstname.$randomNumbers;
+        $student_id = $firstname.$randomNumbers;
 
         $student = new Student([
             'name' => $request->input('name'),
@@ -67,7 +67,7 @@ class RegistrationController extends Controller
 
         if($student && Hash::check($request->password, $student->password)) {
             Auth::login($student);
-            return redirect('/dashboard')->with('success', 'You Are Logged In');
+            return redirect('/student-dashboard')->with('success', 'You Are Logged In');
         } else {
             return redirect()->back()->withErrors('Invalid Credentials');
         }

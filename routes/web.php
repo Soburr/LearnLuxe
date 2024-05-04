@@ -10,8 +10,8 @@ Route::get('/', function () {
 
 Route::get('/student-dashboard', [PortalController::class, 'index']);
 
-Route::get('/sign-in', [RegistrationController::class, 'showRegistrationForm'])->name('sign-in');
-Route::post('/sign-in', [RegistrationController::class, 'register']);
+Route::get('/sign-up', [RegistrationController::class, 'showRegsitrationForm'])->name('sign-up');
+Route::post('/sign-up', [RegistrationController::class, 'register']);
 
 Route::get('/login', [RegistrationController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [RegistrationController::class, 'login']);

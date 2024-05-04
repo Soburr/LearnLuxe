@@ -13,41 +13,20 @@ class StudentRegistration extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
-    public function __construct()
+    public $name;
+    public $student_id;
+    public $password;
+
+    public function __construct($name, $student_id, $password)
     {
-        //
+        $this->name = $name;
+        $this->student_id = $student_id;
+        $this->password = $password;
     }
 
-    /**
-     * Get the message envelope.
-     */
-    public function envelope(): Envelope
-    {
-        return new Envelope(
-            subject: 'Student Registration',
-        );
+    public function build () {
+        $subject = 'Your Login Credentilas';
+        return $this->subject($subject)->view('emails.login-credentials');
     }
 
-    /**
-     * Get the message content definition.
-     */
-    public function content(): Content
-    {
-        return new Content(
-            view: 'view.name',
-        );
-    }
-
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
-    public function attachments(): array
-    {
-        return [];
-    }
 }
