@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PortalController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,5 +17,6 @@ Route::post('/sign-up', [RegistrationController::class, 'register']);
 Route::get('/login', [RegistrationController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [RegistrationController::class, 'login']);
 
+Route::get('/admin-dashboard', [AdminController::class, 'index']);
 
 // require __DIR__.'/auth.php';

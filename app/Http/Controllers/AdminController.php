@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PortalController extends Controller
+class AdminController extends Controller
 {
     public function index() {
-        return view('student.index');
+        return view('admin.index');
     }
+    
 }
