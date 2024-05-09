@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'students',
         ],
+
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
     ],
 
     /*
@@ -60,15 +65,21 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'students' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\Student::class),
         ],
 
-        'students' => [
-            'driver' => 'database',
-            'table' => 'students',
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\Admin::class),
         ],
+
+        // 'students' => [
+        //     'driver' => 'database',
+        //     'table' => 'students',
+        // ],
+
     ],
 
     /*
@@ -91,8 +102,15 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'students' => [
+            'provider' => 'students',
+            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'admins' => [
+            'provider' => 'admins',
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
             'expire' => 60,
             'throttle' => 60,
