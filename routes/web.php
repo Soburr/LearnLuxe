@@ -9,7 +9,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware('auth:student')->get('/student/dashboard', [PortalController::class, 'index']);
+Route::middleware('auth:student')->group(function() {
 
 Route::get('/sign-up', [RegistrationController::class, 'showRegsitrationForm'])->name('sign-up');
 Route::post('/sign-up', [RegistrationController::class, 'register']);
@@ -17,6 +17,17 @@ Route::post('/sign-up', [RegistrationController::class, 'register']);
 Route::get('/login', [RegistrationController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [RegistrationController::class, 'login']);
 
-Route::middleware('auth:admin')->get('/admin/dashboard', [AdminController::class, 'index']);
+});
+
+
+Route::middleware('auth:admin')->group(function() {
+
+    Route::get('/admin/register', [AdminController::class, 'showRegsitrationForm'])->name('admin.register');
+    Route::post('/admin/register', [AdminController::class, 'register']);
+
+    Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('/admin/login', [AdminController::class, 'login']);
+
+});
 
 // require __DIR__.'/auth.php';
