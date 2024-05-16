@@ -11,6 +11,9 @@ use Illuminate\Validation\Rules;
 
 class AdminController extends Controller
 {
+    public function index() {
+        return view('admin.index');
+    }
     public function showRegsitrationForm() {
         return view('admin-auth.register');
     }
@@ -33,15 +36,31 @@ class AdminController extends Controller
 
         Auth::login($admin);
 
-        return redirect('/admin/login');
+        return redirect()->intended('admin/dashboard');
     }
 
     public function showLoginForm() {
         return view('admin-auth.login');
     }
 
-    public function login() {
+    public function login (Request $request) {
 
-    }
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+
+        $admin = Admin::where('email', $request->email)->first();
+
+        if($admin && Hash::check($request->password, $admin->password)) {
+            Auth::login($admin);
+            return redirect('/admin/dashboard')->with('success', 'You Are Logged In');
+        } else {
+            return redirect()->back()->withErrors('Invalid Credentials');
+        }
+     }
+
+
 
 }

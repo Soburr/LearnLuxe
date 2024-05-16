@@ -16,10 +16,17 @@ class AuthenticateStudent
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::guard('student')->check()) {
-            return redirect('auth.login');
+
+        if (Auth::guard('student')->check()) {
+            return $next($request);
          }
 
-        return $next($request);
+         if ($request->is('admin/login') || $request->is('admin/*')) {
+            return $next($request);
+         }
+
+         return redirect('admin/login');
+
+
     }
 }

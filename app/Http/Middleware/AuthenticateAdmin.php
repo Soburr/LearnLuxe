@@ -16,9 +16,10 @@ class AuthenticateAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::guard('admin')->check()) {
-           return redirect('auth.login');
-        }
+        if (!Auth::guard('admin')->check() && !$request->is('admin/login')) {
+            return redirect('/admin/login');
+         }
+
         return $next($request);
     }
 }
