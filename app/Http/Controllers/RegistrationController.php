@@ -66,7 +66,7 @@ class RegistrationController extends Controller
         $student = Student::where('student_id', $request->student_id)->first();
 
         if($student && Hash::check($request->password, $student->password)) {
-            Auth::login($student);
+            Auth::guard('student')->login($student);
             return redirect('/student/dashboard')->with('success', 'You Are Logged In');
         } else {
             return redirect()->back()->withErrors('Invalid Credentials');

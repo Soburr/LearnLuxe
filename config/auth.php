@@ -77,7 +77,7 @@ return [
 
         'students' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\Student::class),
+            'model' => App\Models\Student::class,
         ],
 
         'admins' => [
