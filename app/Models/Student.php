@@ -11,6 +11,8 @@ class Student extends Authenticatable
 
       use HasFactory;
 
+      protected $guard = 'student';
+
     protected $fillable = [
         'name',
         'student_id',

@@ -2,12 +2,14 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    @if (Session::has('error'))
-        <div class="alert alert-danger">
-            {{ Session::get('error') }}
+    @if ($errors->any())
+        <div style="color: red; margin-top: 10px;">
+            @foreach ($errors->all() as $error)
+               <li>{{ $error }}</li>
+            @endforeach
         </div>
     @endif
-    
+
     <form method="POST" action="{{ route('login') }}">
         @csrf
 

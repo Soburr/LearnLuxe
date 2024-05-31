@@ -25,11 +25,10 @@ Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('adm
 Route::post('/admin/login', [AdminController::class, 'login']);
 
 
-    Route::get('/student/dashboard', [PortalController::class, 'index'])->middleware('auth:student');
+    Route::get('/student/dashboard', [PortalController::class, 'index']);
 
 
-Route::group(['middleware' => 'admin'], function() {
+
     Route::get('/admin/dashboard', [AdminController::class, 'index']);
-});
 
 // require __DIR__.'/auth.php';

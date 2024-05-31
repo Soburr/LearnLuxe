@@ -34,7 +34,7 @@ class AdminController extends Controller
 
         $admin->save();
 
-        Auth::login($admin);
+        Auth::guard('admin')->login($admin);
 
         return redirect()->intended('admin/dashboard');
     }
@@ -51,14 +51,22 @@ class AdminController extends Controller
         ]);
 
 
-        $admin = Admin::where('email', $request->email)->first();
-
-        if($admin && Hash::check($request->password, $admin->password)) {
-            Auth::login($admin);
-            return redirect('/admin/dashboard')->with('success', 'You Are Logged In');
+        if (Auth::guard('admin')->attempt([
+            'email' => $request->email,
+            'password' => $request->password
+            ])) {
+                return redirect('/admin/dashboard')->with('success', 'You Are Logged In');
         } else {
-            return redirect()->back()->withErrors('Invalid Credentials');
+                return redirect()->back()->withErrors('Invalid Credentials');
         }
+        // $admin = Admin::where('email', $request->email)->first();
+
+        // if($admin && Hash::check($request->password, $admin->password)) {
+        //     Auth::login($admin);
+        //     return redirect('/admin/dashboard')->with('success', 'You Are Logged In');
+        // } else {
+        //     return redirect()->back()->withErrors('Invalid Credentials');
+        // }
      }
 
 

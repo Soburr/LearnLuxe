@@ -21,11 +21,11 @@ class AuthenticateStudent
             return $next($request);
          }
 
-         if ($request->is('admin/login') || $request->is('admin/*')) {
+         if ($request->is('login')) {
             return $next($request);
          }
 
-         return redirect('admin/login');
+         return redirect('/login');
 
 
     }
