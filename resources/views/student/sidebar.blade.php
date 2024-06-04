@@ -1,8 +1,8 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
-    <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+    {{-- <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
       <a class="sidebar-brand brand-logo" href="index.html"><img src="/newton/assets/images/logo.svg" alt="logo" /></a>
       <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="/newtonassets/images/logo-mini.svg" alt="logo" /></a>
-    </div>
+    </div> --}}
     <ul class="nav">
       <li class="nav-item profile">
         <div class="profile-desc">
@@ -56,14 +56,16 @@
       <li class="nav-item nav-category">
         <span class="nav-link">Navigation</span>
       </li>
+
       <li class="nav-item menu-items">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ url('student/dashboard/bio-data') }}">
           <span class="menu-icon">
             <i class="mdi mdi-speedometer"></i>
           </span>
-          <span class="menu-title">Dashboard</span>
+          <span class="menu-title">Student Data</span>
         </a>
       </li>
+
       <li class="nav-item menu-items">
         <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
           <span class="menu-icon">

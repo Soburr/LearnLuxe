@@ -5,22 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class PortalController extends Controller
+class BiodataController extends Controller
 {
-    public function index() {
+    public function bioData() {
         $student = Auth::user();
 
         $name = $student->name;
-        return view('student.index', [
+        return view('student.biodata', [
             'name' => $name
         ]);
-
     }
-
-    public function logout() {
-        auth()->logout();
-        return redirect('/');
-    }
-
-
 }

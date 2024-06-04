@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\PortalController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\AdminController;
@@ -18,6 +19,7 @@ Route::post('/login', [RegistrationController::class, 'login']);
 
 Route::middleware(['auth:student'])->group(function() {
     Route::get('/student/dashboard', [PortalController::class, 'index']);
+    Route::get('/student/dashboard/bio-data', [BiodataController::class, 'bioData']);
 });
 
 
@@ -31,6 +33,6 @@ Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('adm
 Route::post('/admin/login', [AdminController::class, 'login']);
 
 
-    Route::get('/admin/dashboard', [AdminController::class, 'index']);
+Route::get('/admin/dashboard', [AdminController::class, 'index']);
 
 // require __DIR__.'/auth.php';
