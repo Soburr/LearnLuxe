@@ -44,7 +44,7 @@
                 <h1 class="text-center mb-4">Bio Data</h1>
               <div class="row">
                 <div class="col-md-4 col-sm-6 col-12">
-                  <a href="#" class="text-decoration-none">
+                  <a href="{{ route('view-profile')}}" class="text-decoration-none">
                     <div class="card">
                         <div class="card-body text-center">
                             <i class="mdi mdi-eye" style="font-size: 2rem;"></i>
@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="col-md-4 col-sm-6 col-12">
-                    <a href="#" class="text-decoration-none">
+                    <a href="{{ route('update-profile')}}" class="text-decoration-none">
                       <div class="card">
                           <div class="card-body text-center">
                               <i class="mdi mdi-account-edit" style="font-size: 2rem;"></i>

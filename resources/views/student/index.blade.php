@@ -17,8 +17,14 @@
     <link rel="stylesheet" href="/newton/assets/css/style.css">
 
     <link rel="shortcut icon" href="/newton/assets/images/favicon.png" />
+
+    @livewireStyles
+    
   </head>
   <body>
+
+    @livewireScripts
+
     <div class="container-scroller">
 
       @include('student.sidebar')
