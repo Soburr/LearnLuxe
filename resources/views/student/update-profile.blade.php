@@ -67,6 +67,27 @@
         .input-field:focus+.placeholder {
             display: none;
         }
+
+                /* Styling for alert messages */
+                .alert {
+            margin: 20px auto;
+            width: fit-content;
+            padding: 15px;
+            border-radius: 5px;
+            color: #fff;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .alert-success {
+            background-color: #28a745; /* Green */
+        }
+
+        .alert-danger {
+            background-color: #dc3545; /* Red */
+        }
+
     </style>
 
 @if ($errors->any())
@@ -78,11 +99,17 @@
       </ul>
    </div>
 @endif
+
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
     <nav>
         <h2 style="text-align: center;">Update Your Bio-Data</h2>
         <hr><br>
 
-    <form action="{{ route('updateUserData') }}" method="POST">
+    <form action="{{ route('updateUserData', ['id' => $student->id]) }}" method="POST">
       @csrf
       @method('PUT')
         <div class="default">
@@ -94,7 +121,7 @@
                   background-color: gray;
                   font-weight: bold;
                   border-radius: 10px 25px 20px 10px;">
-                {{ $name }}</p> <br>
+                {{ $student->name }}</p> <br>
             <p
                 style="border: 2px solid gray;
                   padding: 20px;
@@ -103,7 +130,7 @@
                   background-color: gray;
                   font-weight: bold;
                   border-radius: 10px 25px 20px 10px;">
-                {{ $student_id }}</p> <br>
+                {{ $student->student_id }}</p> <br>
             <p
                 style="border: 2px solid gray;
                   padding: 20px;
@@ -112,22 +139,22 @@
                   background-color: gray;
                   font-weight: bold;
                   border-radius: 10px 25px 20px 10px;">
-                {{ $email }}</p> <br>
+                {{ $student->email }}</p> <br>
         </div>
 
         <div class="input-container">
             <span class="placeholder">D.O.B</span>
-            <input style="font-weight: 700;" type="date" name="dob" class="input-field" required> <br><br>
+            <input style="font-weight: 700;" type="date" name="dob" class="input-field" value="{{ old('dob', $student->dob) }}" required> <br><br>
         </div>
 
         <div class="input-container">
             <span class="placeholder">CLASS</span>
-            <input style="font-weight: 700;" type="text" name="class" class="input-field" required> <br><br>
+            <input style="font-weight: 700;" type="text" name="class" class="input-field" value="{{ old('class', $student->class) }}" required> <br><br>
         </div>
 
         <div class="input-container">
             <span class="placeholder">GENDER</span>
-            <input style="font-weight: 700;" type="text" name="gender" class="input-field" required> <br><br>
+            <input style="font-weight: 700;" type="text" name="gender" class="input-field" value="{{ old('gender', $student->gender) }}" required> <br><br>
         </div>
         <hr>
         <button class="submit-button" type="submit">Submit</button>

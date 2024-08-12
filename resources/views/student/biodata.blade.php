@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="col-md-4 col-sm-6 col-12">
-                    <a href="{{ route('update-profile')}}" class="text-decoration-none">
+                    <a href="{{ route('update-profile', ['id' => $student->id])}}" class="text-decoration-none">
                       <div class="card">
                           <div class="card-body text-center">
                               <i class="mdi mdi-account-edit" style="font-size: 2rem;"></i>
