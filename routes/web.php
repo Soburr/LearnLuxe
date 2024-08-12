@@ -21,7 +21,8 @@ Route::middleware(['auth:student'])->group(function() {
     Route::get('/student/dashboard', [PortalController::class, 'index']);
     Route::get('/student/dashboard/bio-data', [BiodataController::class, 'show']);
     Route::get('/student/dashboard/bio-data/view-profile', [BiodataController::class, 'viewProfile'])->name('view-profile');
-    Route::get('/student/dashboard/bio-data/update-profile', [BiodataController::class, 'updateProfile'])->name('update-profile');
+    Route::get('/student/dashboard/bio-data/update-profile/{id}', [BiodataController::class, 'showUpdate'])->name('update-profile');
+    Route::put('student/dashboard/bio-data/update-profile/{id}', [BiodataController::class, 'update'])->name('updateUserData');
 });
 
 

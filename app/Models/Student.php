@@ -17,6 +17,9 @@ class Student extends Authenticatable
         'name',
         'student_id',
         'email',
-        'password'
+        'password',
+        'dob',
+        'class',
+        'gender'
     ];
 }

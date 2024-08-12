@@ -44,6 +44,8 @@
             padding: 20px;
             border: 2px solid gray;
             border-radius: 10px 25px 20px 10px;
+            text-align: center;
+            font-size: 15px;
         }
 
         .submit-button {
@@ -67,9 +69,22 @@
         }
     </style>
 
+@if ($errors->any())
+   <div class="alert alert-danger">
+      <ul>
+        @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+   </div>
+@endif
     <nav>
         <h2 style="text-align: center;">Update Your Bio-Data</h2>
         <hr><br>
+
+    <form action="{{ route('updateUserData') }}" method="POST">
+      @csrf
+      @method('PUT')
         <div class="default">
             <p
                 style="border: 2px solid gray;
@@ -102,22 +117,22 @@
 
         <div class="input-container">
             <span class="placeholder">D.O.B</span>
-            <input type="text" class="input-field"> <br><br>
+            <input style="font-weight: 700;" type="date" name="dob" class="input-field" required> <br><br>
         </div>
 
         <div class="input-container">
             <span class="placeholder">CLASS</span>
-            <input type="text" class="input-field"> <br><br>
+            <input style="font-weight: 700;" type="text" name="class" class="input-field" required> <br><br>
         </div>
 
         <div class="input-container">
             <span class="placeholder">GENDER</span>
-            <input type="text" class="input-field"> <br><br>
+            <input style="font-weight: 700;" type="text" name="gender" class="input-field" required> <br><br>
         </div>
         <hr>
-        <button class="submit-button">Submit</button>
+        <button class="submit-button" type="submit">Submit</button>
     </nav>
-
+</form>
 
 
 </body>

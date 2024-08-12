@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,7 @@ class BiodataController extends Controller
         ]);
     }
 
-    public function updateProfile() {
+    public function showUpdate($id) {
         $student = Auth::user();
 
         $name = $student->name;
@@ -37,6 +38,25 @@ class BiodataController extends Controller
             'name' => $name,
             'email' => $email,
             'student_id' => $student_id,
+            'student' => $student
         ]);
+    }
+
+    public function update (Request $request, $id) {
+       $request->validate([
+         'dob' => 'required|date',
+         'class' => 'required|string|max:255',
+         'gender' => 'required|string|max:255'
+       ]);
+
+       $student = Student::findOrFail($id);
+
+       $student->update([
+         'dob' => $request->input('dob'),
+         'class' => $request->input('class'),
+         'gender' => $request->input('gender')
+       ]);
+
+       return redirect()->route('student.bio-data')->with('success', 'Student Bio-Data Updated Successfully!');
     }
 }
