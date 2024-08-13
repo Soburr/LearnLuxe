@@ -18,13 +18,12 @@ class BiodataController extends Controller
         ]);
     }
 
-    public function viewProfile() {
-        $student = Auth::user();
+    public function viewProfile($id) {
 
-        $name = $student->name;
-        return view('student.view-profile', [
-            'name' => $name
-        ]);
+        $student = Student::findOrFail($id);
+         return view('student.view-profile', [
+             'student' => $student
+         ]);
     }
 
     public function showUpdate($id) {
@@ -33,19 +32,6 @@ class BiodataController extends Controller
         return view('student.update-profile', [
             'student' => $student
         ]);
-        // $student = Auth::user();
-
-        // $name = $student->name;
-        // $email = $student->email;
-        // $student_id = $student->student_id;
-
-
-        // return view('student.update-profile', [
-        //     'name' => $name,
-        //     'email' => $email,
-        //     'student_id' => $student_id,
-        //     'student' => $student
-        // ]);
     }
 
     public function update (Request $request, $id) {
@@ -63,6 +49,6 @@ class BiodataController extends Controller
          'gender' => $request->input('gender')
        ]);
 
-       return redirect()->route('update-profile', ['id' => $id])->with('success', 'Student Bio-Data Updated Successfully!');
+       return redirect()->route('view-profile', ['id' => $id])->with('success', 'Student Bio-Data Updated Successfully!');
     }
 }
